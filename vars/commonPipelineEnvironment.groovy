@@ -203,6 +203,40 @@ class commonPipelineEnvironment implements Serializable {
         [filename: '.pipeline/commonPipelineEnvironment/abap/addonDescriptor', property: 'abapAddonDescriptor'],
     ]
 
+    Map getCPEMap(script) {
+        def cpeMap = [:]
+        files.each({f ->
+            createMapEntry(script, cpeMap, f.filename, this[f.property])
+        })
+
+        containerProperties.each({key, value ->
+            def filename = ".pipeline/commonPipelineEnvironment/container/${key}"
+            createMapEntry(script, cpeMap, filename, value)
+        })
+
+        valueMap.each({key, value ->
+            def filename = ".pipeline/commonPipelineEnvironment/custom/${key}"
+            createMapEntry(script, cpeMap, filename, value)
+        })
+        return cpeMap
+    }
+
+    void createMapEntry(script, Map resMap, String filename, value) {
+        try{
+            if (value){
+                if (!(value in CharSequence)) filename += '.json'
+                if (!(value in CharSequence)) value = groovy.json.JsonOutput.toJson(value)
+
+                // prefix is assumed by step if nothing else is specified
+                def prefix = ~/^.pipeline\/commonPipelineEnvironment\//
+                filename -= prefix
+                resMap[filename] = value
+            }
+        }catch(StackOverflowError error) {
+            script.echo("failed to write file: " + filename)
+        }
+    }
+
     void writeToDisk(script) {
         files.each({f  ->
             writeValueToFile(script, f.filename, this[f.property])

@@ -184,7 +184,7 @@ func TestCustomArtifact(t *testing.T) {
 		{file: "test.json", field: "testField", expected: &JSONfile{path: "test.json", versionField: "testField"}},
 		{file: "test.yaml", field: "testField", expected: &YAMLfile{path: "test.yaml", versionField: "testField"}},
 		{file: "test.yml", field: "testField", expected: &YAMLfile{path: "test.yml", versionField: "testField"}},
-		{file: "test.txt", expected: &Versionfile{path: "test.txt"}},
+		{file: "test.json", expected: &Versionfile{path: "test.json"}},
 		{file: "test", expected: &Versionfile{path: "test"}},
 		{file: "test", scheme: "maven", expected: &Versionfile{path: "test", versioningScheme: "maven"}},
 	}

@@ -73,7 +73,7 @@ func TestPiperGithubPublishRelease(t *testing.T) {
 	defer os.RemoveAll(dir) // clean up
 	assert.NoError(t, err, "Error when creating temp dir")
 
-	testAsset := filepath.Join(dir, "test.txt")
+	testAsset := filepath.Join(dir, "test.json")
 	err = ioutil.WriteFile(testAsset, []byte("Test"), 0644)
 	assert.NoError(t, err, "Error when writing temporary file")
 
