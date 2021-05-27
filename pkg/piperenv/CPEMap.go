@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-// CPEMap represents the common pipelineEnvironment Map
+// CPEMap represents the common pipeline environment map
 type CPEMap map[string]interface{}
 
 // Flatten replaces keys which contains the '/' character and creates the corresponding maps instead an nests

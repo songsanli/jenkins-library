@@ -17,7 +17,4 @@ EOF
 
     def output = script.sh(returnStdout: true, script: writeCPECommand)
     script.echo("Output is ${output}")
-
-    output = script.sh(returnStdout: true, script: "ls -Ral .pipeline/commonPipelineEnvironment")
-    script.echo("ls output is ${output}")
 }

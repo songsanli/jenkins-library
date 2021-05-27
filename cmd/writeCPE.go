@@ -41,6 +41,7 @@ func runWriteCPE() error {
 	}
 
 	commonPipelineEnv.Flatten()
+
 	rootPath := filepath.Join(GeneralConfig.EnvRootPath, "commonPipelineEnvironment")
 	err = commonPipelineEnv.WriteToDisk(rootPath)
 	if err != nil {
