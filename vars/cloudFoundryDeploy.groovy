@@ -591,7 +591,6 @@ private deploy(String cfApiStatement, String cfDeployStatement, config, Closure 
             export HOME=${config.dockerWorkspace}
             ls -la /
             ls -la /home
-            whoami
             ${config.cfTrace ? "export CF_TRACE=${cfTraceFile}" : ""}
             ${cfApiStatement ?: ''}
             cf login -u \"${username}\" -p '${password}' -a ${config.cloudFoundry.apiEndpoint} -o \"${config.cloudFoundry.org}\" -s \"${config.cloudFoundry.space}\" ${config.loginParameters}
