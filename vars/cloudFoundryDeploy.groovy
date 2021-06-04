@@ -589,6 +589,7 @@ private deploy(String cfApiStatement, String cfDeployStatement, config, Closure 
             set +x
             set -e
             export HOME=${config.dockerWorkspace}
+            ls -la /
             ls -la /home
             whoami
             ${config.cfTrace ? "export CF_TRACE=${cfTraceFile}" : ""}
